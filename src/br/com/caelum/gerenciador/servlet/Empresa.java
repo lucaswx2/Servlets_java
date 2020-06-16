@@ -37,5 +37,15 @@ public class Empresa {
 	
 	
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.nome + " - " + this.id;
+	}
+
+	public void setDataAbertura(Date data) {
+		this.dataAbertura=data;
+	}
+	
 
 }
