@@ -1,4 +1,4 @@
-package br.com.caelum.gerenciador.servlet;
+package br.com.alura.gerenciador.modelo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,11 +9,15 @@ import java.util.Optional;
 
 public class Banco {
 
-	static List<Empresa> lista = new ArrayList();
-
+	private static List<Empresa> lista = new ArrayList();
+	private static List<Usuario> listaUsuarios= new ArrayList<>();
+	
 	static {
 		Banco.lista.add(new Empresa("Alura", new Date()));
 		Banco.lista.add(new Empresa("Caelum", new Date()));
+		
+		Banco.listaUsuarios.add(new Usuario("lucas","12345"));
+		Banco.listaUsuarios.add(new Usuario("gleice","12345"));
 	}
 
 	static public void adiciona(Empresa empresa) {
@@ -43,6 +47,10 @@ public class Banco {
 		empresa.setNome(nome);
 		empresa.setDataAbertura(dataAbertura);
 		
+	}
+	
+	public static Usuario existeUsuario(String login,String senha) {
+		return Banco.listaUsuarios.stream().filter(usuario-> usuario.ehIgual(login, senha)).findFirst().orElseGet(null);
 	}
 
 }
